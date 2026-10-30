@@ -1,0 +1,1 @@
+Copy your existing hero-portrait.png into this folder with the filename hero-portrait.png.

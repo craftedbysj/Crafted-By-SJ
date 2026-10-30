@@ -1,35 +1,36 @@
 # Crafted By SJ
 
-A cinematic personal portfolio and creator resource hub.
+Dark editorial personal portfolio and resource hub.
 
-## Stack
+## Install
+Requires Node.js 20.9+.
 
-- Next.js 15 / React 19 / TypeScript
-- Tailwind CSS
-- Lucide icons
-- Planned: GSAP + Lenis, Supabase, Vercel
-
-## Getting started
-
-```bash
-npm install
-npm run dev
+```powershell
+Copy-Item .env.example .env.local
+npm.cmd install
+npm.cmd run dev
 ```
 
 Open http://localhost:3000.
 
-## Current build
+## Hero portrait
+Copy your existing `hero-portrait.png` into `public/images/hero-portrait.png`. The hero CSS references that path and falls back to the dark background if the image is missing.
 
-The first foundation includes the landing-page sections, responsive styling, navigation anchors, resource-card placeholders, portfolio placeholders, experience, BTS, about and contact sections.
+## Supabase admin setup
+1. Create a Supabase project.
+2. Copy Project URL and anon/public key into `.env.local`.
+3. In Supabase SQL Editor, run `supabase/schema.sql`.
+4. Create your admin user in Supabase Authentication → Users.
+5. Set `ADMIN_EMAILS` to your exact login email.
+6. Restart the dev server after editing `.env.local`.
 
-## Next milestones
+The admin area supports Supabase email/password login and CRUD for resource records. This baseline does not yet include file-upload UI, project management, or full gallery/about CMS screens; those should be added in a later iteration rather than treated as implemented.
 
-1. Replace the hero placeholder with SJ's portrait.
-2. Add real resource data and individual resource routes.
-3. Connect Supabase authentication, database and storage for a private admin dashboard.
-4. Add project videos and BTS gallery assets.
-5. Add GSAP/Lenis interactions and deploy on Vercel.
+## Deploy
+Import the GitHub repository into Vercel and add `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `ADMIN_EMAILS`. Configure Supabase Auth Site URL and redirect URLs to your production domain.
 
-## Notes
+## Verify
+Run `npm.cmd run lint`, `npm.cmd run typecheck`, and `npm.cmd run build` locally after dependency installation. These checks have not been executed in the generation environment.
 
-The visible resource cards, project tiles, brand counts, email and social links are starter placeholders. Replace them with verified details before launch.
+## Content
+Starter resources are examples without download URLs. Add only verified links before publishing. Replace generic Instagram and LinkedIn links with your actual profiles. No client work or personal achievements have been invented.

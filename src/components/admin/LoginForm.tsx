@@ -1,0 +1,6 @@
+"use client";
+import {useState} from "react";
+import {createBrowserClient} from "@supabase/ssr";
+export default function LoginForm(){const [email,setEmail]=useState("");const [password,setPassword]=useState("");const [error,setError]=useState("");const [busy,setBusy]=useState(false);
+async function submit(e:React.FormEvent<HTMLFormElement>){e.preventDefault();setBusy(true);setError("");try{const url=process.env.NEXT_PUBLIC_SUPABASE_URL,key=process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;if(!url||!key)throw new Error("Supabase environment variables are missing.");const sb=createBrowserClient(url,key);const {error}=await sb.auth.signInWithPassword({email,password});if(error)throw error;window.location.href="/admin";}catch(err){setError(err instanceof Error?err.message:"Sign-in failed.");}finally{setBusy(false);}}
+return <form className="admin-form" onSubmit={submit}><label>Email<input type="email" required value={email} onChange={e=>setEmail(e.target.value)}/></label><label>Password<input type="password" required value={password} onChange={e=>setPassword(e.target.value)}/></label>{error&&<p className="form-error">{error}</p>}<button className="solid-button" disabled={busy}>{busy?"SIGNING IN…":"SIGN IN"}</button></form>}
