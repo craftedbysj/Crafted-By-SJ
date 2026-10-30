@@ -1,0 +1,223 @@
+/* ============================================
+   CRAFTED BY SJ — LIQUID GLASS MATERIAL SYSTEM
+   Apple-inspired optical glass aesthetic
+   ============================================ */
+
+:root {
+  --lg-background: #090909;
+  --lg-text: #f3eee7;
+  --lg-muted: #a8a29b;
+  --lg-bronze: #c4a78d;
+
+  --lg-surface: rgba(24, 23, 22, 0.48);
+  --lg-surface-hover: rgba(38, 36, 34, 0.58);
+
+  --lg-edge: rgba(255, 255, 255, 0.19);
+  --lg-edge-bright: rgba(255, 255, 255, 0.32);
+
+  --lg-blur: 25px;
+  --lg-radius: 18px;
+
+  --lg-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.19),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.035);
+
+  --lg-shadow-hover:
+    0 18px 48px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+/* Main glass material */
+
+.liquid-glass {
+  --glass-x: 50%;
+  --glass-y: 50%;
+
+  position: relative;
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      180px circle at var(--glass-x) var(--glass-y),
+      rgba(255, 255, 255, 0.15),
+      transparent 75%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.105),
+      rgba(255, 255, 255, 0.018) 45%,
+      rgba(196, 167, 141, 0.045)
+    ),
+    var(--lg-surface);
+
+  border: 1px solid var(--lg-edge);
+  backdrop-filter: blur(var(--lg-blur)) saturate(175%);
+  -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(175%);
+
+  box-shadow: var(--lg-shadow);
+
+  transition:
+    background 400ms ease,
+    border-color 400ms ease,
+    box-shadow 400ms ease,
+    transform 400ms cubic-bezier(.2, .7, .2, 1);
+}
+
+/* Curved internal light reflection */
+
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+
+  background:
+    radial-gradient(
+      ellipse at var(--glass-x) var(--glass-y),
+      rgba(255, 255, 255, 0.15),
+      transparent 68%
+    ),
+    linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.15),
+      transparent 28%,
+      transparent 72%,
+      rgba(196, 167, 141, 0.08)
+    );
+
+  opacity: 0.8;
+  transition: opacity 400ms ease;
+}
+
+/* Fine glass edge */
+
+.liquid-glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+
+  border: 1px solid rgba(255, 255, 255, 0.075);
+
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.17),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.045);
+}
+
+/* Keep actual content above reflections */
+
+.liquid-glass > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hover interaction */
+
+@media (hover: hover) {
+  .liquid-glass:hover {
+    border-color: var(--lg-edge-bright);
+    background-color: var(--lg-surface-hover);
+    box-shadow: var(--lg-shadow-hover);
+  }
+
+  .liquid-glass:hover::before {
+    opacity: 1;
+  }
+}
+
+/* Floating navigation */
+
+header.liquid-glass,
+nav.liquid-glass {
+  background:
+    radial-gradient(
+      220px circle at var(--glass-x) var(--glass-y),
+      rgba(255, 255, 255, 0.16),
+      transparent 72%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.10),
+      rgba(255, 255, 255, 0.025)
+    ),
+    rgba(15, 15, 14, 0.68);
+
+  border-color: rgba(255, 255, 255, 0.20);
+
+  backdrop-filter: blur(32px) saturate(185%);
+  -webkit-backdrop-filter: blur(32px) saturate(185%);
+}
+
+/* Resource cards */
+
+.resource-item.liquid-glass {
+  border-radius: var(--lg-radius);
+}
+
+@media (hover: hover) {
+  .resource-item.liquid-glass:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/* Contact links and buttons */
+
+.contact-links a.liquid-glass,
+button.liquid-glass,
+.btn.liquid-glass,
+.button.liquid-glass {
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* Focus accessibility */
+
+.liquid-glass:focus-visible {
+  outline: 2px solid var(--lg-bronze);
+  outline-offset: 4px;
+}
+
+/* Mobile adjustments */
+
+@media (max-width: 700px) {
+  :root {
+    --lg-blur: 18px;
+    --lg-radius: 14px;
+  }
+
+  .liquid-glass {
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.24),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  .resource-item.liquid-glass:hover {
+    transform: none;
+  }
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-glass,
+  .liquid-glass::before {
+    transition: none !important;
+  }
+
+  .liquid-glass:hover {
+    transform: none;
+  }
+}
+
+/* Fallback for unsupported browsers */
+
+@supports not (backdrop-filter: blur(10px)) {
+  .liquid-glass {
+    background: rgba(25, 24, 23, 0.96);
+  }
+}
