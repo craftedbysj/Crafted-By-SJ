@@ -1,0 +1,204 @@
+/* Crafted By SJ — controlled Liquid Glass navigation lens.
+   The refraction itself is rendered by the WebGL shader in LiquidGlass.tsx.
+   No backdrop blur is used. */
+
+.home {
+  position: relative;
+}
+
+/* Float the header over the hero image instead of turning it into a panel. */
+.home .site-header {
+  position: absolute;
+  inset: 0 4.5% auto;
+  z-index: 20;
+  height: 105px;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* The hero begins at the top so the glass samples the actual portrait behind it. */
+.home .hero {
+  min-height: 100svh;
+}
+
+/* One controlled glass surface: the navigation capsule. */
+.home .main-nav {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2.6vw, 34px);
+  min-height: 46px;
+  padding: 0 clamp(15px, 1.8vw, 21px);
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.025);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.24),
+    0 2px 7px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.75, 0.25, 1),
+    border-color 260ms ease,
+    box-shadow 260ms ease;
+}
+
+.home .main-nav .liquid-glass-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.home .main-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.11),
+      transparent 34%,
+      transparent 72%,
+      rgba(196, 167, 141, 0.055)
+    );
+}
+
+.home .main-nav::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.17),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.045);
+}
+
+.home .main-nav > a {
+  position: relative;
+  z-index: 3;
+  white-space: nowrap;
+  color: rgba(250, 247, 242, 0.94);
+  text-shadow: 0 1px 7px rgba(0, 0, 0, 0.42);
+  transition: color 180ms ease, opacity 180ms ease;
+}
+
+.home .main-nav > a:hover {
+  color: #ffffff;
+}
+
+.home .main-nav:focus-within {
+  border-color: rgba(255, 255, 255, 0.42);
+}
+
+.home .main-nav a:focus-visible {
+  outline: 2px solid #c4a78d;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.home .main-nav.liquid-glass-fallback {
+  background: rgba(26, 25, 24, 0.38);
+}
+
+@media (hover: hover) {
+  .home .main-nav:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.34);
+    box-shadow:
+      0 16px 34px rgba(0, 0, 0, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.29),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.07);
+  }
+}
+
+/* Keep the showreel a normal editorial media card, not another glass panel. */
+.home .showreel-card {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+@media (max-width: 700px) {
+  .home .site-header {
+    height: 78px;
+  }
+
+  .home .hero {
+    min-height: 100svh;
+  }
+
+  .home .main-nav {
+    gap: 11px;
+    min-height: 39px;
+    padding: 0 11px;
+    margin: 0;
+  }
+
+  .home .main-nav > a {
+    font-size: 8px;
+    letter-spacing: 0.35px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home .main-nav {
+    transition: none;
+  }
+}
+
+/* Header alignment: logo left, navigation centered, location right. */
+.home .site-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  column-gap: clamp(12px, 2vw, 28px);
+}
+
+.home .brand-mark {
+  justify-self: start;
+}
+
+.home .main-nav {
+  justify-self: center;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.home .header-location {
+  justify-self: end;
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .home .site-header {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 12px;
+  }
+
+  .home .brand-mark {
+    justify-self: start;
+  }
+
+  .home .main-nav {
+    justify-self: end;
+    max-width: 100%;
+  }
+}

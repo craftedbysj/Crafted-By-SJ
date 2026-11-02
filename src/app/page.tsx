@@ -1,4 +1,5 @@
-﻿/* eslint-disable react/jsx-no-comment-textnodes */
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/jsx-no-comment-textnodes */
 import Link from "next/link";
 import {ArrowDown,ArrowUpRight,Play} from "lucide-react";
 import {resources} from "@/lib/content";
@@ -11,4 +12,5 @@ export default function Home(){return <main className="home">
 <section className="section" id="about"><div className="section-heading"><div><p className="eyebrow-small">04 / A LITTLE ABOUT ME</p><h2>THE PERSON<br/><span>BEHIND THE FRAME.</span></h2></div><p className="section-intro">Iâ€™m SJ â€” an independent creative artist working across video editing, motion design and visual storytelling. I enjoy turning ideas into thoughtful visual experiences.</p></div><div className="about-meta"><span>VIDEO EDITING</span><span>MOTION DESIGN</span><span>VISUAL ART</span><span>STORYTELLING</span></div></section>
 <section className="section contact-section" id="contact"><p className="eyebrow-small">05 / LET'S CONNECT</p><h2>HAVE AN IDEA?<br/><span>LET'S MAKE IT.</span></h2><p className="section-intro">For collaborations, creative projects and enquiries, reach out through your preferred social channel.</p><div className="contact-links"><a href="https://www.instagram.com/" target="_blank" rel="noreferrer">INSTAGRAM â†—</a><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LINKEDIN â†—</a></div></section>
 <footer className="site-footer"><span>CRAFTED BY SJ</span><span>INDEPENDENT CREATIVE ARTIST</span><span>Â© 2026</span><Link href="/admin/login">ADMIN</Link></footer></main>}
+
 
