@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type PointerEvent as ReactPointerEvent } from "react";
 
 export default function EditorsCutOpening() {
   const [visible, setVisible] = useState(true);
@@ -13,8 +12,8 @@ export default function EditorsCutOpening() {
       return;
     }
 
-    const exitTimer = window.setTimeout(() => setLeaving(true), 2650);
-    const removeTimer = window.setTimeout(() => setVisible(false), 3350);
+    const exitTimer = window.setTimeout(() => setLeaving(true), 2050);
+    const removeTimer = window.setTimeout(() => setVisible(false), 2700);
 
     return () => {
       window.clearTimeout(exitTimer);
@@ -22,95 +21,64 @@ export default function EditorsCutOpening() {
     };
   }, []);
 
+  const handlePointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "touch") return;
+
+    const bounds = event.currentTarget.getBoundingClientRect();
+    if (!bounds.width || !bounds.height) return;
+
+    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+
+    event.currentTarget.style.setProperty("--pointer-x", `${(x + 0.5) * 100}%`);
+    event.currentTarget.style.setProperty("--pointer-y", `${(y + 0.5) * 100}%`);
+    event.currentTarget.style.setProperty("--tilt-x", `${(x * 5).toFixed(2)}deg`);
+    event.currentTarget.style.setProperty("--tilt-y", `${(-y * 4).toFixed(2)}deg`);
+    event.currentTarget.style.setProperty("--shift-x", `${(x * 5).toFixed(1)}px`);
+    event.currentTarget.style.setProperty("--shift-y", `${(y * 4).toFixed(1)}px`);
+  };
+
+  const resetPointer = (event: ReactPointerEvent<HTMLDivElement>) => {
+    event.currentTarget.style.setProperty("--pointer-x", "50%");
+    event.currentTarget.style.setProperty("--pointer-y", "50%");
+    event.currentTarget.style.setProperty("--tilt-x", "0deg");
+    event.currentTarget.style.setProperty("--tilt-y", "0deg");
+    event.currentTarget.style.setProperty("--shift-x", "0px");
+    event.currentTarget.style.setProperty("--shift-y", "0px");
+  };
+
   if (!visible) return null;
 
   return (
     <div
-      className={`sj-opening${leaving ? " sj-opening--exit" : ""}`}
+      className={`sj-signature-loader${leaving ? " sj-signature-loader--exit" : ""}`}
       role="status"
-      aria-label="Crafted By SJ — opening sequence"
+      aria-label="Crafted By SJ"
       aria-live="polite"
+      onPointerMove={handlePointerMove}
+      onPointerLeave={resetPointer}
     >
-      <div className="sj-opening__ambient" aria-hidden="true" />
-      <div className="sj-opening__grain" aria-hidden="true" />
+      <div className="sj-signature-loader__light" aria-hidden="true" />
 
-      <header className="sj-opening__topline">
-        <div className="sj-opening__signature">SJ<span>—</span></div>
-        <span className="sj-opening__top-label">INDEPENDENT CREATIVE PRACTICE</span>
-        <span className="sj-opening__serial">PORTFOLIO / NO. 001</span>
-      </header>
+      <div className="sj-signature-loader__lockup">
+        <span className="sj-signature-loader__eyebrow">
+          WELCOME TO MY FRAME OF MIND
+        </span>
 
-      <main className="sj-opening__stage">
-        <section className="sj-opening__copy">
-          <p className="sj-opening__eyebrow">
-            CREATIVE DIRECTION <i /> VIDEO EDITING <i /> MOTION DESIGN
-          </p>
-          <h1 className="sj-opening__headline">
-            EVERY FRAME
-            <br />
-            HAS A <em>PURPOSE.</em>
-          </h1>
-          <p className="sj-opening__thought">
-            Ideas shaped into images.
-            <br />
-            Images shaped into feeling.
-          </p>
-          <div className="sj-opening__credit">
-            <span>AN INTRODUCTION TO</span>
-            <strong>SOUMOJIT DAS</strong>
-          </div>
-        </section>
+        <h1 className="sj-signature-loader__wordmark">
+          <span className="sj-signature-loader__crafted">CRAFTED</span>
+          <span className="sj-signature-loader__by">BY SJ</span>
+        </h1>
 
-        <figure className="sj-opening__portrait">
-          <div className="sj-opening__portrait-matte">
-            <Image
-              src="/images/hero-portrait.png"
-              alt=""
-              fill
-              priority
-              sizes="(max-width: 700px) 64vw, 39vw"
-              className="sj-opening__portrait-image"
-            />
-          </div>
-          <div className="sj-opening__portrait-outline" aria-hidden="true" />
-          <span className="sj-opening__portrait-index">FIG. 001 / SJ</span>
-          <span className="sj-opening__portrait-side">CRAFTED BEYOND THE FRAME</span>
-          <figcaption className="sj-opening__portrait-caption">
-            <span>THE CREATIVE</span>
-            <span>BEHIND THE CUT</span>
-          </figcaption>
-        </figure>
-      </main>
-
-      <footer className="sj-opening__edit">
-        <div className="sj-opening__edit-meta">
-          <span>SEQUENCE 001</span>
-          <span>PICTURE / SOUND</span>
-          <span>PREPARING YOUR VIEW</span>
+        <div className="sj-signature-loader__progress" aria-hidden="true">
+          <span />
         </div>
-        <div className="sj-opening__timeline">
-          <div className="sj-opening__track-labels" aria-hidden="true">
-            <span>V1</span>
-            <span>A1</span>
-          </div>
-          <div className="sj-opening__tracks">
-            <div className="sj-opening__track sj-opening__track--picture">
-              <span className="sj-opening__clip sj-opening__clip--one">SOURCE</span>
-              <span className="sj-opening__clip sj-opening__clip--two">SELECTED FRAME</span>
-              <span className="sj-opening__clip sj-opening__clip--three">FINAL CUT</span>
-            </div>
-            <div className="sj-opening__track sj-opening__track--sound">
-              <span className="sj-opening__waveform" />
-            </div>
-            <span className="sj-opening__playhead" aria-hidden="true" />
-          </div>
+
+        <div className="sj-signature-loader__footer">
+          <span>VISUALS · MOTION · DESIGN</span>
+          <span>EST. IN THE FRAME</span>
         </div>
-        <div className="sj-opening__edit-bottom">
-          <span>CRAFTED BY SJ</span>
-          <span>VISUALS / MOTION / STORYTELLING</span>
-          <span>01 — 01</span>
-        </div>
-      </footer>
+      </div>
     </div>
   );
 }
