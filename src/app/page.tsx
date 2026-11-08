@@ -2,13 +2,96 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import Link from "next/link";
 import {ArrowDown,ArrowUpRight,Play} from "lucide-react";
-import {resources} from "@/lib/content";
+import PortfolioArchive from "@/components/PortfolioArchive";
+import RecentWorks from "@/components/RecentWorks";
 export default function Home(){return <main className="home">
 <header className="site-header"><Link href="/" className="brand-mark">SJ.</Link><nav className="main-nav"><a href="#work">Work</a><a href="#resources">Resources</a><a href="#about">About</a><a href="#contact">Contact</a></nav><div className="header-location"><i/> <b/> INDIA, IN</div></header>
 <section className="hero"><div className="hero-image"/><div className="hero-intro"><div className="section-index">01 <i/></div><p className="eyebrow">INDEPENDENT<br/>CREATIVE ARTIST<br/>BASED IN INDIA.</p><h1>CRAFTED<br/>BEYOND<br/>THE <span>FRAME.</span></h1><p className="hero-description">A visual exploration of ideas, motion,<br className="desktop-break"/> design and storytelling.</p><a href="#work" className="scroll-link"><span className="scroll-circle"><ArrowDown/></span> SCROLL TO EXPLORE</a></div><div className="hero-disciplines"><span>VISUALS</span><span>MOTION</span><span>DESIGN</span><span>STORYTELLING</span><span>//</span></div><a href="#showreel" className="showreel-card"><span className="showreel-image"><Play fill="currentColor"/></span><span className="showreel-info">SHOWREEL<small>COMING SOON</small></span><ArrowUpRight/></a></section>
 <div className="hero-footer"><span>CRAFTED BY SJ</span><span>VISUAL ARTIST / VIDEO EDITOR</span><span>Â© 2026</span></div>
-<section className="section" id="resources"><div className="section-heading"><div><p className="eyebrow-small">02 / THE CREATIVE ARCHIVE</p><h2>TOOLS FOR<br/>THE <span>CREATIVE.</span></h2></div><p className="section-intro">A curated collection of resources, tools and creative assets to make your workflow better.</p></div><div className="section-topline"><span>SELECTED RESOURCES</span><span>EXPLORE THE COLLECTION â†—</span></div><div className="resource-grid">{resources.map((r,i)=><Link href={`/resources/${r.slug}`} className="resource-item" key={r.slug}><div className={`resource-visual resource-${i+1}`}><span>{`0${i+1}`} / {r.category}</span><strong>{i===0?<>LUT<br/>COLLECTION</>:i===1?<>MOTION<br/>PRESETS</>:<>CREATIVE<br/>TOOLS</>}</strong><b>â†—</b></div><div className="resource-details"><h3>{r.title}</h3><span>{r.software.toUpperCase()}</span></div></Link>)}</div><div className="section-bottom"><span>MADE FOR CREATORS</span><span>MORE RESOURCES COMING SOON â†—</span></div></section>
-<section className="section" id="work"><div className="section-heading"><div><p className="eyebrow-small">03 / SELECTED WORK</p><h2>MADE WITH<br/><span>INTENTION.</span></h2></div><p className="section-intro">A selection of visual experiments and commissioned work. Project details will be added as the portfolio grows.</p></div><div className="work-empty"><span>PORTFOLIO ARCHIVE</span><p>Selected projects are being prepared.</p></div></section>
+<section className="section" id="resources">
+  <div className="section-heading">
+    <div>
+      <p className="eyebrow-small">02 / THE CREATIVE ARCHIVE</p>
+      <h2>TOOLS FOR<br/>THE <span>CREATIVE.</span></h2>
+    </div>
+    <p className="section-intro">A curated collection of creative assets, visual tools and resources to shape your next project.</p>
+  </div>
+  <div className="section-topline">
+    <span>THE CREATIVE ARCHIVE</span>
+    <span>07 COLLECTIONS / CURATED BY SJ</span>
+  </div>
+  <Link
+    href="/resources"
+    className="archive-feature"
+    style={{
+      display: "grid",
+      gridTemplateColumns: "minmax(0, 1.15fr) minmax(220px, 0.85fr)",
+      alignItems: "stretch",
+      gap: "clamp(24px, 5vw, 80px)",
+      minHeight: "clamp(260px, 32vw, 430px)",
+      padding: "clamp(24px, 4vw, 64px)",
+      border: "1px solid rgba(238, 234, 228, 0.16)",
+      background: "radial-gradient(ellipse at 82% 45%, rgba(169,138,112,0.24), transparent 48%), linear-gradient(135deg, #1b1a18, #10100f 72%)",
+      color: "#eeeae4",
+      textDecoration: "none",
+    }}
+  >
+    <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "32px" }}>
+      <div>
+        <p className="eyebrow-small">ONE LIBRARY / SEVEN COLLECTIONS</p>
+        <h3 style={{ fontSize: "clamp(2.6rem, 6vw, 6.5rem)", lineHeight: 0.9, letterSpacing: "-0.055em", fontWeight: 750, margin: "24px 0" }}>
+          THE CREATIVE<br/><span style={{ color: "#a98a70" }}>ARCHIVE.</span>
+        </h3>
+        <p style={{ maxWidth: "440px", color: "#b8b2aa", fontSize: "clamp(1rem, 1.4vw, 1.25rem)", lineHeight: 1.6 }}>
+          LUTs, sound effects, overlays, transitions, plugins and AI prompts — gathered in one place for your next project.
+        </p>
+      </div>
+      <span
+        className="archive-claim-button"
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "14px",
+          width: "fit-content",
+          padding: "15px 22px",
+          background: "#a98a70",
+          color: "#10100f",
+          border: "1px solid #a98a70",
+          fontSize: "10px",
+          fontWeight: 700,
+          letterSpacing: "0.16em",
+          transition: "background 250ms ease, transform 250ms ease",
+        }}
+      >
+        CLAIM FREE RESOURCES <ArrowUpRight size={17}/>
+      </span>
+    </div>
+    <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", borderLeft: "1px solid rgba(238,234,228,0.16)", paddingLeft: "clamp(18px, 3vw, 42px)", gap: "0" }}>
+      {[
+        ["01", "COLOR TRANSFORMS", "Conversion LUTs"],
+        ["02", "FILM LOOKS", "Cinematic LUTs"],
+        ["03", "SOUND LIBRARY", "SFX"],
+        ["04", "VISUAL LAYERS", "Overlays"],
+        ["05", "MOTION FLOW", "Transitions"],
+        ["06", "PLUGIN CABINET", "Plugins"],
+        ["07", "PROMPT LAB", "AI prompts"],
+      ].map(([number, name, detail]) => (
+        <div key={number} style={{ display: "flex", alignItems: "baseline", gap: "12px", padding: "10px 0", borderBottom: "1px solid rgba(238,234,228,0.12)" }}>
+          <span style={{ color: "#a98a70", fontSize: "9px" }}>{number}</span>
+          <span style={{ fontSize: "clamp(9px, 0.85vw, 12px)", letterSpacing: "0.1em" }}>{name}</span>
+          <span style={{ marginLeft: "auto", color: "#9f9991", fontSize: "9px" }}>{detail}</span>
+        </div>
+      ))}
+    </div>
+  </Link>
+  <div className="section-bottom">
+    <span>MADE FOR CREATORS</span>
+    <span>EXPLORE ALL SEVEN COLLECTIONS ↗</span>
+  </div>
+</section>
+<RecentWorks />
+<PortfolioArchive />
 <section className="section" id="about"><div className="section-heading"><div><p className="eyebrow-small">04 / A LITTLE ABOUT ME</p><h2>THE PERSON<br/><span>BEHIND THE FRAME.</span></h2></div><p className="section-intro">Iâ€™m SJ â€” an independent creative artist working across video editing, motion design and visual storytelling. I enjoy turning ideas into thoughtful visual experiences.</p></div><div className="about-meta"><span>VIDEO EDITING</span><span>MOTION DESIGN</span><span>VISUAL ART</span><span>STORYTELLING</span></div></section>
 <section className="section contact-section" id="contact"><p className="eyebrow-small">05 / LET'S CONNECT</p><h2>HAVE AN IDEA?<br/><span>LET'S MAKE IT.</span></h2><p className="section-intro">For collaborations, creative projects and enquiries, reach out through your preferred social channel.</p><div className="contact-links"><a href="https://www.instagram.com/" target="_blank" rel="noreferrer">INSTAGRAM â†—</a><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LINKEDIN â†—</a></div></section>
 <footer className="site-footer"><span>CRAFTED BY SJ</span><span>INDEPENDENT CREATIVE ARTIST</span><span>Â© 2026</span><Link href="/admin/login">ADMIN</Link></footer></main>}

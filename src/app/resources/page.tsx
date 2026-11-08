@@ -9,6 +9,7 @@ const categories = [
     subtitle: "Conversion LUTs",
     description: "Transform log footage into a colour-ready Rec.709 image.",
     slug: "color-transforms",
+    image: "color-transforms.jpg",
   },
   {
     number: "02",
@@ -16,6 +17,7 @@ const categories = [
     subtitle: "Cinematic LUTs",
     description: "Create distinctive cinematic colour and atmosphere.",
     slug: "film-looks",
+    image: "film-looks.jpg",
   },
   {
     number: "03",
@@ -23,6 +25,7 @@ const categories = [
     subtitle: "Sound Effects / SFX",
     description: "Sound effects and audio elements for your edits.",
     slug: "sound-library",
+    image: "sound-library.jpg",
   },
   {
     number: "04",
@@ -30,6 +33,7 @@ const categories = [
     subtitle: "Overlays & Textures",
     description: "Light leaks, film grain, textures and visual overlays.",
     slug: "visual-layers",
+    image: "visual-layers.jpg",
   },
   {
     number: "05",
@@ -37,6 +41,7 @@ const categories = [
     subtitle: "Video Transitions",
     description: "Transitions and movement for more dynamic edits.",
     slug: "motion-flow",
+    image: "motion-flow.jpg",
   },
   {
     number: "06",
@@ -44,6 +49,7 @@ const categories = [
     subtitle: "Plugins & Extensions",
     description: "Useful plugins and extensions for creative software.",
     slug: "plugin-cabinet",
+    image: "plugin-cabinet.jpg",
   },
   {
     number: "07",
@@ -51,6 +57,7 @@ const categories = [
     subtitle: "AI Prompts & Workflows",
     description: "Prompts and creative workflows for AI tools.",
     slug: "prompt-lab",
+    image: "prompt-lab.jpg",
   },
 ];
 
@@ -114,10 +121,34 @@ export default function ResourceArchive() {
               {category.number}
             </span>
 
-            <div className="archive-category-info">
-              <h2>{category.name}</h2>
-              <span>{category.subtitle}</span>
-              <p>{category.description}</p>
+            <div
+              className="archive-category-info"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "clamp(88px, 13vw, 176px) minmax(0, 1fr)",
+                alignItems: "center",
+                gap: "clamp(12px, 2vw, 26px)",
+                minWidth: 0,
+              }}
+            >
+              <div
+                role="img"
+                aria-label={`${category.name} digital resource pack cover`}
+                style={{
+                  width: "100%",
+                  aspectRatio: "16 / 9",
+                  backgroundImage: `url("/images/resources/${category.image}")`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundColor: "#211f1c",
+                  border: "1px solid rgba(238, 234, 228, 0.16)",
+                }}
+              />
+              <div style={{ minWidth: 0 }}>
+                <h2>{category.name}</h2>
+                <span>{category.subtitle}</span>
+                <p>{category.description}</p>
+              </div>
             </div>
 
             <div className="archive-category-status">

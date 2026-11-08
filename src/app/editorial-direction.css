@@ -579,30 +579,6 @@ body.editorial-motion-ready .contact-section.is-in-view h2.editorial-heading .ed
   color: #a98a70 !important;
 }
 
-/* Remove the rounded glass capsule from the navigation. */
-.home .site-header .main-nav {
-  background: transparent !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  outline: 0 !important;
-  padding: 0 !important;
-}
-
-.home .site-header .main-nav::before,
-.home .site-header .main-nav::after {
-  content: none !important;
-  display: none !important;
-}
-
-.home .site-header .main-nav a {
-  color: #eeeae4;
-  font-size: 0.625rem;
-  letter-spacing: 0.19em;
-}
-
 @media (max-width: 700px) {
   .home .hero-intro {
     width: 100%;

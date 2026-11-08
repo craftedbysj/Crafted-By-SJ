@@ -1,0 +1,16 @@
+.videoGrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(1.5rem,2.8vw,2.8rem) clamp(1rem,2vw,2rem); }
+.videoCard { min-width:0; }
+.videoFrame { position:relative; width:100%; aspect-ratio:16 / 9; overflow:hidden; background:#191816; border:1px solid rgba(238,234,228,.15); }
+.videoPlayer { position:absolute; inset:0; width:100%; height:100%; border:0; }
+.videoPreview { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:space-between; padding:clamp(.9rem,1.6vw,1.5rem); background:radial-gradient(ellipse at 70% 28%,rgba(169,138,112,.34),transparent 48%),linear-gradient(135deg,#28231f,#11100f 75%); background-size:cover; background-position:center; }
+.previewTopline { display:flex; justify-content:space-between; gap:1rem; color:rgba(238,234,228,.7); font-size:.52rem; letter-spacing:.16em; }
+.previewTitle { display:flex; flex-direction:column; gap:.45rem; }
+.previewTitle span { color:#a98a70; font-size:.55rem; letter-spacing:.16em; }
+.previewTitle strong { color:#eeeae4; font-size:clamp(1.2rem,2.2vw,2.2rem); line-height:.95; letter-spacing:-.045em; font-weight:650; }
+.playButton { position:absolute; top:50%; left:50%; width:3.2rem; height:3.2rem; display:grid; place-items:center; transform:translate(-50%,-50%); border:1px solid rgba(238,234,228,.7); border-radius:50%; background:rgba(16,16,15,.5); color:#eeeae4; cursor:pointer; transition:background .3s,color .3s,transform .3s; }
+.playButton:hover:not(:disabled) { background:#a98a70; color:#10100f; transform:translate(-50%,-50%) scale(1.08); }
+.playButton:disabled { opacity:.45; cursor:not-allowed; }
+.pendingLabel { align-self:flex-end; color:#a98a70; font-size:.48rem; letter-spacing:.13em; }
+.videoMeta { display:flex; justify-content:space-between; gap:1rem; padding:.85rem 0; border-bottom:1px solid rgba(238,234,228,.14); color:#c9c2b9; font-size:.55rem; letter-spacing:.13em; text-transform:uppercase; }
+.videoMeta span:last-child { color:#8e877e; }
+@media(max-width:700px) { .videoGrid { grid-template-columns:1fr; gap:1.25rem; } .videoMeta { font-size:.5rem; } }

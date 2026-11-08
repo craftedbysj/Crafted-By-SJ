@@ -1,0 +1,60 @@
+import Link from "next/link";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { notFound } from "next/navigation";
+import { portfolioCategories } from "@/lib/portfolio";
+import PortfolioCategoryVideos from "@/components/PortfolioCategoryVideos";
+import styles from "./PortfolioCategoryPage.module.css";
+
+type PageProps = { params: Promise<{ slug: string }> };
+
+export function generateStaticParams() {
+  return portfolioCategories.map((category) => ({ slug: category.slug }));
+}
+
+export default async function PortfolioCategoryPage({ params }: PageProps) {
+  const { slug } = await params;
+  const categoryIndex = portfolioCategories.findIndex((item) => item.slug === slug);
+  const category = portfolioCategories[categoryIndex];
+  if (!category) notFound();
+
+  return (
+    <main className={styles.page}>
+      <header className={styles.header}>
+        <Link href="/" className={styles.brand}>SJ.</Link>
+        <Link href="/#work" className={styles.backLink}><ArrowLeft size={14} /> ALL WORK</Link>
+        <span className={styles.headerNote}>INDEPENDENT CREATIVE ARTIST / INDIA</span>
+      </header>
+
+      <section className={styles.hero}>
+        <div className={styles.kicker}>
+          <span>PORTFOLIO / {String(categoryIndex + 1).padStart(2, "0")} OF 09</span>
+          <span>CRAFTED BY SJ</span>
+        </div>
+        <div className={styles.titleRow}>
+          <h1>{category.name}</h1>
+          <p>{category.description.toLowerCase().split(" / ").join(" · ")}</p>
+        </div>
+        <div className={styles.heroMeta}>
+          <span>SELECTED PROJECTS</span>
+          <span>{String(category.projects.length).padStart(2, "0")} VIDEOS</span>
+        </div>
+      </section>
+
+      <section className={styles.projects} aria-label={`${category.name} projects`}>
+        <div className={styles.projectTopline}>
+          <span>THE COLLECTION</span>
+          <span>PLAY FILMS / EXPLORE THE WORK</span>
+        </div>
+        <PortfolioCategoryVideos category={category} />
+        <div className={styles.bottomNote}>
+          <span>END OF COLLECTION / {category.name.toUpperCase()}</span>
+          <Link href="/#work">ALL CATEGORIES <ArrowUpRight size={14} /></Link>
+        </div>
+      </section>
+      <footer className={styles.footer}>
+        <span>CRAFTED BY SJ</span>
+        <Link href="/">BACK TO HOME <ArrowUpRight size={13} /></Link>
+      </footer>
+    </main>
+  );
+}

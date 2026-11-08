@@ -1,0 +1,18 @@
+.page { min-height:100vh; padding:0 5.2%; background:#10100f; color:#eeeae4; }
+.header { min-height:100px; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; border-bottom:1px solid rgba(238,234,228,.14); }
+.brand { color:#eeeae4; font-size:2.25rem; line-height:1; font-weight:550; letter-spacing:-.08em; }
+.backLink,.headerNote { display:flex; align-items:center; gap:.65rem; color:#c9c2b9; font-size:.58rem; letter-spacing:.17em; text-decoration:none; }
+.backLink:hover,.footer a:hover,.bottomNote a:hover { color:#a98a70; }
+.headerNote { color:#8e877e; }
+.hero { padding:clamp(4.5rem,9vw,8rem) 0 2rem; }
+.kicker,.heroMeta,.projectTopline,.bottomNote,.footer { display:flex; justify-content:space-between; gap:1rem; color:#a98a70; font-size:.56rem; letter-spacing:.17em; text-transform:uppercase; }
+.titleRow { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(220px,.8fr); align-items:end; gap:2rem; padding:2.5rem 0 3.5rem; }
+.titleRow h1 { margin:0; color:#eeeae4; font-size:clamp(4rem,10vw,10rem); line-height:.84; letter-spacing:-.07em; font-weight:750; }
+.titleRow p { max-width:26rem; margin:0 0 .5rem; color:#b8b2aa; font-size:clamp(1rem,1.5vw,1.4rem); line-height:1.5; letter-spacing:.04em; }
+.heroMeta { padding:1rem 0; border-top:1px solid rgba(238,234,228,.15); color:#9e978f; }
+.projects { padding:2rem 0 6rem; }
+.projectTopline { padding:0 0 1rem; color:#a98a70; }
+.bottomNote { align-items:center; margin-top:3rem; padding:1rem 0; border-top:1px solid rgba(238,234,228,.15); color:#9e978f; }
+.bottomNote a,.footer a { display:flex; align-items:center; gap:.55rem; color:#a98a70; text-decoration:none; }
+.footer { min-height:4.5rem; align-items:center; border-top:1px solid rgba(238,234,228,.15); color:#c9c2b9; }
+@media(max-width:700px) { .page { padding:0 22px; } .header { min-height:78px; } .brand { font-size:1.9rem; } .headerNote { display:none; } .backLink { font-size:.5rem; } .titleRow { grid-template-columns:1fr; gap:1.3rem; padding:2rem 0 2.5rem; } .titleRow h1 { font-size:clamp(3.7rem,15vw,6rem); } .titleRow p { font-size:1rem; } .kicker,.heroMeta,.projectTopline,.bottomNote,.footer { font-size:.48rem; letter-spacing:.1em; } .projects { padding-top:1.5rem; } }
