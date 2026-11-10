@@ -30,9 +30,19 @@ export default async function PortfolioCategoryPage({ params }: PageProps) {
           <span>PORTFOLIO / {String(categoryIndex + 1).padStart(2, "0")} OF 09</span>
           <span>CRAFTED BY SJ</span>
         </div>
-        <div className={styles.titleRow}>
-          <h1>{category.name}</h1>
-          <p>{category.description.toLowerCase().split(" / ").join(" · ")}</p>
+        <div
+          className={styles.categoryCover}
+          role="img"
+          aria-label={`${category.name} portfolio cover`}
+          style={{
+            backgroundImage: `url("/images/portfolio-covers/${category.slug}.jpg")`,
+          }}
+        >
+          <span className={styles.visuallyHidden}>{category.name} portfolio cover</span>
+        </div>
+        <div className={styles.coverDescription}>
+          <h1 className={styles.visuallyHidden}>{category.name}</h1>
+          <p>{category.description.toLowerCase().split(" / ").join(" Â· ")}</p>
         </div>
         <div className={styles.heroMeta}>
           <span>SELECTED PROJECTS</span>

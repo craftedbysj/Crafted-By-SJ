@@ -26,3 +26,59 @@
 .indexFooter { margin-top:1rem; border-bottom:1px solid rgba(238,234,228,.15); color:#999188; }
 .indexFooter span:last-child { display:flex; align-items:center; gap:.5rem; color:#a98a70; }
 @media(max-width:700px) { .categoryGrid { grid-template-columns:1fr; gap:.2rem; } .cardArtwork { min-height:230px; aspect-ratio:1.45 / 1; } .artworkWord { font-size:clamp(2.7rem,12vw,4.2rem); } .indexTopline,.indexFooter { font-size:.48rem; letter-spacing:.1em; } }
+/* HOME PORTFOLIO CARD COVER IMAGES - START */
+/* The JPG covers already contain their own category title and index. */
+.categoryCard .cardArtwork {
+  min-height: 0 !important;
+  aspect-ratio: 1.94 / 1 !important;
+  padding: 0 !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  border-color: rgba(238, 234, 228, .18);
+}
+
+.categoryCard .cardArtwork.artworkCreators { background-image: url("/images/portfolio-covers/creators.jpg") !important; }
+.categoryCard .cardArtwork.artworkGym { background-image: url("/images/portfolio-covers/gym.jpg") !important; }
+.categoryCard .cardArtwork.artworkAi { background-image: url("/images/portfolio-covers/ai.jpg") !important; }
+.categoryCard .cardArtwork.artworkClubs { background-image: url("/images/portfolio-covers/clubs.jpg") !important; }
+.categoryCard .cardArtwork.artworkClothing { background-image: url("/images/portfolio-covers/clothing.jpg") !important; }
+.categoryCard .cardArtwork.artworkMusic { background-image: url("/images/portfolio-covers/music-videos.jpg") !important; }
+.categoryCard .cardArtwork.artworkMotion { background-image: url("/images/portfolio-covers/motion-graphics.jpg") !important; }
+.categoryCard .cardArtwork.artworkRestaurants { background-image: url("/images/portfolio-covers/restaurants.jpg") !important; }
+.categoryCard .cardArtwork.artworkOthers { background-image: url("/images/portfolio-covers/others.jpg") !important; }
+
+/* Remove the old abstract rings and duplicate text already baked into each cover. */
+.categoryCard .cardArtwork::before { display: none !important; }
+.categoryCard .cardArtwork .cardTopline,
+.categoryCard .cardArtwork .artworkWord,
+.categoryCard .cardArtwork .artworkRule,
+.categoryCard .cardArtwork .artworkFoot { display: none !important; }
+.categoryCard .cardArtwork .cardArrow {
+  z-index: 2;
+  background: rgba(16, 16, 15, .48);
+  backdrop-filter: blur(8px);
+}
+.categoryCard .cardDetails h3,
+.categoryCard .cardDetails .cardIndex { display: none !important; }
+.categoryCard .cardDetails {
+  min-height: 3.4rem;
+  align-items: center;
+}
+.categoryCard .cardDetails p {
+  max-width: 48rem;
+  font-size: .58rem;
+  letter-spacing: .13em;
+}
+.categoryCard:hover .cardArtwork {
+  transform: translateY(-5px);
+  border-color: rgba(169, 138, 112, .75);
+}
+
+@media (max-width: 700px) {
+  .categoryCard .cardArtwork {
+    min-height: 0 !important;
+    aspect-ratio: 1.72 / 1 !important;
+  }
+}
+/* HOME PORTFOLIO CARD COVER IMAGES - END */

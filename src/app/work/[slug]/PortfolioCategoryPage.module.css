@@ -16,3 +16,63 @@
 .bottomNote a,.footer a { display:flex; align-items:center; gap:.55rem; color:#a98a70; text-decoration:none; }
 .footer { min-height:4.5rem; align-items:center; border-top:1px solid rgba(238,234,228,.15); color:#c9c2b9; }
 @media(max-width:700px) { .page { padding:0 22px; } .header { min-height:78px; } .brand { font-size:1.9rem; } .headerNote { display:none; } .backLink { font-size:.5rem; } .titleRow { grid-template-columns:1fr; gap:1.3rem; padding:2rem 0 2.5rem; } .titleRow h1 { font-size:clamp(3.7rem,15vw,6rem); } .titleRow p { font-size:1rem; } .kicker,.heroMeta,.projectTopline,.bottomNote,.footer { font-size:.48rem; letter-spacing:.1em; } .projects { padding-top:1.5rem; } }
+/* Crafted By SJ category page covers */
+.categoryCover {
+  position: relative;
+  width: 100%;
+  max-width: 1240px;
+  aspect-ratio: 1.95 / 1;
+  overflow: hidden;
+  border: 1px solid rgba(238, 234, 228, .18);
+  background-color: #151412;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  isolation: isolate;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, .2);
+}
+
+.categoryCover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(16, 16, 15, .08), transparent 24%, transparent 78%, rgba(16, 16, 15, .08));
+}
+
+.coverDescription {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1.2rem 0 0;
+}
+
+.coverDescription p {
+  max-width: 26rem;
+  margin: 0 0 .5rem;
+  color: #b8b2aa;
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+  line-height: 1.5;
+  letter-spacing: .035em;
+}
+
+.visuallyHidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+@media (max-width: 700px) {
+  .categoryCover {
+    aspect-ratio: 1.72 / 1;
+  }
+
+  .coverDescription {
+    justify-content: flex-start;
+  }
+}
