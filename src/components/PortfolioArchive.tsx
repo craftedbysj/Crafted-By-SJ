@@ -13,6 +13,7 @@ const artworkClassBySlug: Record<string, string> = {
   "motion-graphics": styles.artworkMotion,
   restaurants: styles.artworkRestaurants,
   others: styles.artworkOthers,
+  "real-estate": styles.artworkRealEstate,
 };
 
 export default function PortfolioArchive() {
@@ -28,7 +29,7 @@ export default function PortfolioArchive() {
 
       <div className={styles.indexTopline}>
         <span>EXPLORE BY DISCIPLINE</span>
-        <span>09 COLLECTIONS / SELECTED PROJECTS</span>
+        <span>{String(portfolioCategories.length).padStart(2, "0")} COLLECTIONS / SELECTED PROJECTS</span>
       </div>
 
       <div className={styles.categoryGrid}>
@@ -42,7 +43,7 @@ export default function PortfolioArchive() {
             <div className={`${styles.cardArtwork} ${artworkClassBySlug[category.slug] || styles.artworkOthers}`}>
               <div className={styles.cardTopline}>
                 <span>CRAFTED BY SJ</span>
-                <span>{String(index + 1).padStart(2, "0")} / 09</span>
+                <span>{String(index + 1).padStart(2, "0")} / {String(portfolioCategories.length).padStart(2, "0")}</span>
               </div>
               <div className={styles.artworkWord}>{category.name.toUpperCase()}</div>
               <span className={styles.artworkRule} />

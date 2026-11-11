@@ -82,3 +82,14 @@
   }
 }
 /* HOME PORTFOLIO CARD COVER IMAGES - END */
+
+/* Real Estate â€” warm architectural stone and bronze palette */
+/* Real Estate portfolio card image */
+.artworkRealEstate {
+  background-image:
+    linear-gradient(90deg, rgba(10, 10, 10, 0.16), rgba(10, 10, 10, 0.02)),
+    url("/images/real-estate-cover.png");
+  background-size: 200% auto;
+  background-position: right center;
+  background-repeat: no-repeat;
+}

@@ -27,7 +27,7 @@ export default async function PortfolioCategoryPage({ params }: PageProps) {
 
       <section className={styles.hero}>
         <div className={styles.kicker}>
-          <span>PORTFOLIO / {String(categoryIndex + 1).padStart(2, "0")} OF 09</span>
+          <span>PORTFOLIO / {String(categoryIndex + 1).padStart(2, "0")} OF {String(portfolioCategories.length).padStart(2, "0")}</span>
           <span>CRAFTED BY SJ</span>
         </div>
         <div
@@ -35,7 +35,7 @@ export default async function PortfolioCategoryPage({ params }: PageProps) {
           role="img"
           aria-label={`${category.name} portfolio cover`}
           style={{
-            backgroundImage: `url("/images/portfolio-covers/${category.slug}.jpg")`,
+            backgroundImage: category.slug === "real-estate" ? `url("/images/real-estate-cover.png")` : `url("/images/portfolio-covers/${category.slug}.jpg")`,
           }}
         >
           <span className={styles.visuallyHidden}>{category.name} portfolio cover</span>
