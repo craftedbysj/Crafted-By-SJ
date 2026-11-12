@@ -591,3 +591,278 @@ body.editorial-motion-ready .contact-section.is-in-view h2.editorial-heading .ed
     line-height: 0.88;
   }
 }
+
+/* Creative Archive product display */
+.archive-product-display {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-left: 1px solid rgba(238, 234, 228, 0.16);
+  padding-left: clamp(18px, 3vw, 42px);
+}
+
+.archive-product-display img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 390px;
+  object-fit: contain;
+  object-position: center;
+}
+
+@media (max-width: 700px) {
+  .archive-feature {
+    grid-template-columns: 1fr !important;
+  }
+
+  .archive-product-display {
+    min-height: 0;
+    border-left: 0;
+    border-top: 1px solid rgba(238, 234, 228, 0.16);
+    padding: 18px 0 0;
+  }
+
+  .archive-product-display img {
+    max-height: 260px;
+  }
+}
+/* CRAFTED BY SJ â€” BLENDED CREATIVE ARCHIVE DISPLAY START */
+.archive-product-display {
+  position: relative;
+  isolation: isolate;
+  overflow: visible !important;
+  min-height: 390px;
+  justify-content: center;
+  border-left: 0 !important;
+  padding-left: 0 !important;
+  background: radial-gradient(
+    ellipse 78% 76% at 54% 54%,
+    rgba(169, 138, 112, 0.17) 0%,
+    rgba(169, 138, 112, 0.075) 38%,
+    rgba(169, 138, 112, 0) 76%
+  );
+}
+
+.archive-product-display::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 7% 1% 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 54% 62%,
+    rgba(190, 145, 104, 0.19) 0%,
+    rgba(137, 101, 73, 0.08) 42%,
+    transparent 74%
+  );
+  filter: blur(22px);
+}
+
+.archive-product-display img {
+  display: block;
+  width: 116% !important;
+  max-width: none !important;
+  max-height: none !important;
+  height: auto !important;
+  object-fit: contain;
+  object-position: center;
+  margin-left: -8%;
+  mix-blend-mode: screen;
+  filter: contrast(1.08) saturate(1.06);
+  transform: scale(1.06);
+  -webkit-mask-image: radial-gradient(
+    ellipse 94% 90% at 50% 52%,
+    #000 54%,
+    rgba(0, 0, 0, 0.96) 70%,
+    rgba(0, 0, 0, 0.58) 86%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 94% 90% at 50% 52%,
+    #000 54%,
+    rgba(0, 0, 0, 0.96) 70%,
+    rgba(0, 0, 0, 0.58) 86%,
+    transparent 100%
+  );
+}
+
+@media (max-width: 700px) {
+  .archive-product-display {
+    min-height: 0;
+    margin-top: 1rem;
+    border-top: 0 !important;
+    padding: 0 !important;
+  }
+
+  .archive-product-display img {
+    width: 108% !important;
+    margin-left: -4%;
+    transform: scale(1.02);
+  }
+}
+/* CRAFTED BY SJ â€” BLENDED CREATIVE ARCHIVE DISPLAY END */
+
+/* CRAFTED BY SJ â€” CREATIVE ARCHIVE SEAMLESS IMAGE EDGES */
+/* Feather the artwork into the panel so it no longer reads as a pasted rectangle. */
+.archive-product-display {
+  background: radial-gradient(
+    ellipse at 58% 58%,
+    rgba(169, 138, 112, 0.11) 0%,
+    rgba(169, 138, 112, 0.045) 42%,
+    transparent 76%
+  );
+}
+
+.archive-product-display img {
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  mask-composite: intersect;
+}
+
+@media (max-width: 700px) {
+  .archive-product-display img {
+    -webkit-mask-image:
+      linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%),
+      linear-gradient(180deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    mask-image:
+      linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%),
+      linear-gradient(180deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  }
+}
+/* Creative Archive transparent product lineup â€” final integration */
+.archive-product-display {
+  position: relative !important;
+  display: flex !important;
+  min-width: 0;
+  min-height: 0;
+  align-items: center;
+  justify-content: center;
+  overflow: visible !important;
+  border-left: 0 !important;
+  padding-left: 0 !important;
+  background: transparent !important;
+}
+
+.archive-product-display::before,
+.archive-product-display::after {
+  content: none !important;
+  display: none !important;
+}
+
+.archive-product-display img {
+  position: relative;
+  z-index: 1;
+  display: block !important;
+  width: 128% !important;
+  max-width: none !important;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center;
+  margin: 0;
+  transform: translateX(-8%);
+  filter: none !important;
+  mix-blend-mode: normal;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+
+@media (max-width: 700px) {
+  .archive-product-display {
+    min-height: 0;
+    margin-top: 10px;
+    border: 0 !important;
+    padding: 0 !important;
+  }
+
+  .archive-product-display img {
+    width: 108% !important;
+    max-width: none !important;
+    max-height: 310px !important;
+    transform: none;
+  }
+}
+/* CRAFTED BY SJ â€” CLEAN ARCHIVE DISPLAY OVERRIDES V3 START */
+/* The PNG already has feathered transparent edges; do not add another mask or halo. */
+.home .archive-product-display {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  align-items: center;
+  justify-content: center;
+  overflow: visible !important;
+  border: 0 !important;
+  border-left: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  isolation: isolate;
+}
+
+.home .archive-product-display::before,
+.home .archive-product-display::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  filter: none !important;
+}
+
+.home .archive-product-display img {
+  display: block;
+  width: 124% !important;
+  max-width: none !important;
+  height: auto !important;
+  max-height: 460px !important;
+  object-fit: contain !important;
+  object-position: center;
+  margin: 0 0 0 -10%;
+  transform: none !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+  filter: none !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+
+@media (max-width: 900px) {
+  .home .archive-product-display img {
+    width: 116% !important;
+    max-height: 390px !important;
+    margin-left: -7%;
+  }
+}
+
+@media (max-width: 700px) {
+  .home .archive-product-display {
+    margin-top: 12px;
+    overflow: hidden !important;
+  }
+
+  .home .archive-product-display img {
+    width: 100% !important;
+    max-height: none !important;
+    margin: 0 !important;
+  }
+}
+/* CRAFTED BY SJ â€” CLEAN ARCHIVE DISPLAY OVERRIDES V3 END */
+
+/* Creative Archive left-edge blend refinement */
+@media (min-width: 701px) {
+  .archive-product-display {
+    background: transparent !important;
+  }
+
+  .archive-product-display img {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, .42) 2.5%, #000 7.5%, #000 100%) !important;
+    mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, .42) 2.5%, #000 7.5%, #000 100%) !important;
+  }
+}

@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/jsx-no-comment-textnodes */
 import Link from "next/link";
+import Image from "next/image";
 import {ArrowDown,ArrowUpRight,Play} from "lucide-react";
 import PortfolioArchive from "@/components/PortfolioArchive";
 import RecentWorks from "@/components/RecentWorks";
@@ -67,22 +68,15 @@ export default function Home(){return <main className="home">
         CLAIM FREE RESOURCES <ArrowUpRight size={17}/>
       </span>
     </div>
-    <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", borderLeft: "1px solid rgba(238,234,228,0.16)", paddingLeft: "clamp(18px, 3vw, 42px)", gap: "0" }}>
-      {[
-        ["01", "COLOR TRANSFORMS", "Conversion LUTs"],
-        ["02", "FILM LOOKS", "Cinematic LUTs"],
-        ["03", "SOUND LIBRARY", "SFX"],
-        ["04", "VISUAL LAYERS", "Overlays"],
-        ["05", "MOTION FLOW", "Transitions"],
-        ["06", "PLUGIN CABINET", "Plugins"],
-        ["07", "PROMPT LAB", "AI prompts"],
-      ].map(([number, name, detail]) => (
-        <div key={number} style={{ display: "flex", alignItems: "baseline", gap: "12px", padding: "10px 0", borderBottom: "1px solid rgba(238,234,228,0.12)" }}>
-          <span style={{ color: "#a98a70", fontSize: "9px" }}>{number}</span>
-          <span style={{ fontSize: "clamp(9px, 0.85vw, 12px)", letterSpacing: "0.1em" }}>{name}</span>
-          <span style={{ marginLeft: "auto", color: "#9f9991", fontSize: "9px" }}>{detail}</span>
-        </div>
-      ))}
+    <div className="archive-product-display">
+      <Image
+        src="/images/creative-archive-seven-packs-clean.png"
+        alt="Seven Crafted By SJ creative resource packs displayed together"
+        width={1095}
+        height={510}
+        priority
+        sizes="(max-width: 700px) 100vw, 45vw"
+      />
     </div>
   </Link>
   <div className="section-bottom">

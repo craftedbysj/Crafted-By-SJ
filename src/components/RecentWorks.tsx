@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Play } from "lucide-react";
 import styles from "./RecentWorks.module.css";
 
@@ -12,7 +12,58 @@ type RecentVideo = {
   thumbnail: string;
 };
 
-// Three standalone homepage features. Vimeo privacy hashes are required for unlisted videos.
+type VimeoPlayerInstance = {
+  on: (event: "ended", callback: () => void) => void;
+  off: (event: "ended", callback: () => void) => void;
+  destroy: () => Promise<void>;
+};
+
+type VimeoPlayerApi = {
+  Player: new (element: HTMLIFrameElement) => VimeoPlayerInstance;
+};
+
+declare global {
+  interface Window {
+    Vimeo?: VimeoPlayerApi;
+  }
+}
+
+let vimeoSdkPromise: Promise<void> | null = null;
+
+function loadVimeoPlayerSdk(): Promise<void> {
+  if (typeof window === "undefined") {
+    return Promise.reject(new Error("Vimeo Player SDK can only load in the browser."));
+  }
+
+  if (window.Vimeo?.Player) {
+    return Promise.resolve();
+  }
+
+  if (!vimeoSdkPromise) {
+    vimeoSdkPromise = new Promise<void>((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = "https://player.vimeo.com/api/player.js";
+      script.async = true;
+      script.dataset.vimeoPlayerSdk = "true";
+      script.onload = () => {
+        if (window.Vimeo?.Player) {
+          resolve();
+        } else {
+          reject(new Error("Vimeo Player SDK loaded, but its Player API was unavailable."));
+        }
+      };
+      script.onerror = () => reject(new Error("Could not load the Vimeo Player SDK."));
+      document.head.appendChild(script);
+    }).catch((error: unknown) => {
+      vimeoSdkPromise = null;
+      throw error;
+    });
+  }
+
+  return vimeoSdkPromise;
+}
+
+// Permanent Vimeo video IDs with their unlisted-video privacy hashes.
 const recentVideos: RecentVideo[] = [
   {
     id: "recent-1",
@@ -36,29 +87,73 @@ const recentVideos: RecentVideo[] = [
     thumbnail: "https://i.vimeocdn.com/video/2223758799-ab1d693ed9cf93b7b303c78cde3c22119c2843e4ab6b20f17abbf8b455a3b785-d_1280?region=us",
   },
 ];
-function RecentVideoCard({ project, index }: { project: RecentVideo; index: number }) {
-  const [isPlaying, setIsPlaying] = useState(false);
+
+function RecentVideoCard({
+  project,
+  index,
+  isPlaying,
+  onPlay,
+  onEnded,
+}: {
+  project: RecentVideo;
+  index: number;
+  isPlaying: boolean;
+  onPlay: () => void;
+  onEnded: () => void;
+}) {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const videoId = /^\d+$/.test(project.vimeoId) ? project.vimeoId : "";
   const thumbnailStyle = project.thumbnail
     ? {
         backgroundImage: `linear-gradient(135deg, rgba(12,12,11,.12), rgba(12,12,11,.52)), url("${project.thumbnail}")`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }
     : undefined;
+
+  useEffect(() => {
+    if (!isPlaying || !iframeRef.current) return;
+
+    let cancelled = false;
+    let player: VimeoPlayerInstance | null = null;
+    const handleEnded = () => {
+      // Remove the iframe as soon as playback ends, before Vimeo's end-screen recommendations remain visible.
+      onEnded();
+    };
+
+    loadVimeoPlayerSdk()
+      .then(() => {
+        const VimeoApi = window.Vimeo;
+        if (cancelled || !iframeRef.current || !VimeoApi?.Player) return;
+        player = new VimeoApi.Player(iframeRef.current);
+        player.on("ended", handleEnded);
+      })
+      .catch((error: unknown) => {
+        console.error("Unable to attach the Vimeo end-screen handler:", error);
+      });
+
+    return () => {
+      cancelled = true;
+      if (player) {
+        player.off("ended", handleEnded);
+        void player.destroy().catch(() => undefined);
+      }
+    };
+  }, [isPlaying, onEnded]);
 
   return (
     <article className={styles.card}>
       <div className={styles.artwork}>
         {isPlaying && videoId ? (
           <iframe
+            ref={iframeRef}
             className={styles.videoPlayer}
-            src={`https://player.vimeo.com/video/${videoId}?h=${project.vimeoHash}&autoplay=1&title=0&byline=0&portrait=0&badge=0`}
+            src={`https://player.vimeo.com/video/${videoId}?h=${project.vimeoHash}&autoplay=1&title=0&byline=0&portrait=0&badge=0&autopause=1&loop=0`}
             title={project.title}
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen
-            loading="lazy"
+            loading="eager"
           />
         ) : (
           <div
@@ -78,14 +173,13 @@ function RecentVideoCard({ project, index }: { project: RecentVideo; index: numb
             <button
               type="button"
               className={styles.playButton}
-              onClick={() => videoId && setIsPlaying(true)}
+              onClick={onPlay}
               disabled={!videoId}
-              aria-label={videoId ? `Play ${project.title}` : `${project.title} Vimeo video has not been added yet`}
-              title={videoId ? "Play video" : "Add a Vimeo ID in src/lib/portfolio.ts to enable playback"}
+              aria-label={`Play ${project.title}`}
+              title="Play video"
             >
               <Play size={18} fill="currentColor" />
             </button>
-            {!videoId && <span className={styles.pendingLabel}>VIDEO TO BE ADDED</span>}
           </div>
         )}
       </div>
@@ -94,13 +188,16 @@ function RecentVideoCard({ project, index }: { project: RecentVideo; index: numb
           <span>RECENT PROJECT / {String(index + 1).padStart(2, "0")}</span>
           <h3>{project.title}</h3>
         </div>
-        <span className={styles.videoStatus}>{videoId ? "PLAY INLINE" : "COMING SOON"}</span>
+        <span className={styles.videoStatus}>{isPlaying ? "PLAYING" : "PLAY INLINE"}</span>
       </div>
     </article>
   );
 }
 
 export default function RecentWorks() {
+  const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
+  const handleVideoEnded = useCallback(() => setActiveVideoId(null), []);
+
   return (
     <section className={`section ${styles.recentSection}`} id="recent-works">
       <div className={styles.sectionHeader}>
@@ -120,7 +217,14 @@ export default function RecentWorks() {
 
       <div className={styles.grid}>
         {recentVideos.map((project, index) => (
-          <RecentVideoCard key={project.id} project={project} index={index} />
+          <RecentVideoCard
+            key={project.id}
+            project={project}
+            index={index}
+            isPlaying={activeVideoId === project.id}
+            onPlay={() => setActiveVideoId(project.id)}
+            onEnded={handleVideoEnded}
+          />
         ))}
       </div>
 

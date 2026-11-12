@@ -93,3 +93,19 @@
   background-position: right center;
   background-repeat: no-repeat;
 }
+/* Wedding â€” elegant candlelight, champagne and warm ivory tones */
+.artworkWedding {
+  background:
+    radial-gradient(ellipse at 76% 24%, rgba(190, 154, 119, 0.62), transparent 48%),
+    radial-gradient(ellipse at 18% 82%, rgba(100, 70, 59, 0.42), transparent 44%),
+    linear-gradient(135deg, #332720, #171311 72%);
+}
+
+/* BEGIN: CRAFTED BY SJ WEDDING COVER */
+.artworkWedding {
+  background-image: url("/images/wedding-cover.jpg") !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+}
+/* END: CRAFTED BY SJ WEDDING COVER */

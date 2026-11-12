@@ -35,7 +35,7 @@ export default async function PortfolioCategoryPage({ params }: PageProps) {
           role="img"
           aria-label={`${category.name} portfolio cover`}
           style={{
-            backgroundImage: category.slug === "real-estate" ? `url("/images/real-estate-cover.png")` : `url("/images/portfolio-covers/${category.slug}.jpg")`,
+            backgroundImage: category.slug === "wedding" ? `url("/images/wedding-cover.jpg")` : category.slug === "real-estate" ? `url("/images/real-estate-cover.png")` : `url("/images/portfolio-covers/${category.slug}.jpg")`,
           }}
         >
           <span className={styles.visuallyHidden}>{category.name} portfolio cover</span>

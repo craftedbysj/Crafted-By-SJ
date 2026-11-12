@@ -13,6 +13,7 @@ const artworkClassBySlug: Record<string, string> = {
   "motion-graphics": styles.artworkMotion,
   restaurants: styles.artworkRestaurants,
   others: styles.artworkOthers,
+  wedding: styles.artworkWedding,
   "real-estate": styles.artworkRealEstate,
 };
 

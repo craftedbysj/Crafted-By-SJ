@@ -117,7 +117,26 @@ export const portfolioCategories: PortfolioCategory[] = [
     slug: "restaurants",
     name: "Restaurants",
     description: "FOOD FILMS / HOSPITALITY / BRAND CAMPAIGNS",
-    projects: createProjects("restaurants"),
+    projects: [
+      { id: "restaurants-1", title: "PROJECT 01", vimeoId: "1246228569", thumbnail: "https://i.vimeocdn.com/video/2225566428-2108abfb887b312d1aa9cb2c7daf4005e619f5b66d91c547f30611219111b71b-d_640?region=us", aspectRatio: "720 / 1280" },
+      { id: "restaurants-2", title: "PROJECT 02", vimeoId: "1246228572", thumbnail: "https://i.vimeocdn.com/video/2225566823-421420ac75c524c3a1e02e8cac78c655c83ae3bfc0fbbc50c9db2cc26fc05aad-d_640?region=us", aspectRatio: "720 / 1280" },
+      { id: "restaurants-3", title: "PROJECT 03", vimeoId: "1246228571", thumbnail: "https://i.vimeocdn.com/video/2225567437-5cee9f420d98fec6bd30c5a04773bd327f000190184d1c209938a6704aa550b9-d_640?region=us", aspectRatio: "720 / 1280" },
+      { id: "restaurants-4", title: "PROJECT 04", vimeoId: "1246200832", thumbnail: "https://i.vimeocdn.com/video/2225567194-02b435e4f2be5d5affd07f573d43ed5d4a830f1ae162312a0711e6b24efcaf22-d_640?region=us", aspectRatio: "720 / 1280" },
+      { id: "restaurants-5", title: "PROJECT 05", vimeoId: "1246200834", thumbnail: "https://i.vimeocdn.com/video/2225567903-4cd34952a6bfbdbaa62eb95ce513239ed2798726675039bbc13e1e15d5155c06-d_640?region=us", aspectRatio: "720 / 1280" },
+      { id: "restaurants-6", title: "PROJECT 06", vimeoId: "1246200831", thumbnail: "https://i.vimeocdn.com/video/2225568262-c41a4ad89b207f516a01d14cffec92016495f3027f735845df46dc041062b479-d_640?region=us", aspectRatio: "720 / 1280" },
+    ],
+  },
+  {
+    slug: "wedding",
+    name: "Wedding",
+    description: "WEDDING FILMS / CELEBRATIONS / STORYTELLING",
+    projects: [
+      { id: "wedding-1", title: "PROJECT 01", vimeoId: "1246238957", thumbnail: "https://i.vimeocdn.com/video/2225594077-98fdde83ec0b47e0f43c2d67ecfc8b0e4cecc881278e02cf62a065691eed97c9-d_1280?region=us", aspectRatio: "1280 / 720" },
+      { id: "wedding-2", title: "PROJECT 02", vimeoId: "1246238844", thumbnail: "https://i.vimeocdn.com/video/2225595366-073fe46496beb5b20f6d7fbac5bf342fd23912949fc68f953dbc5846a052c17a-d_1280?region=us", aspectRatio: "1280 / 720" },
+      { id: "wedding-3", title: "PROJECT 03", vimeoId: "1246238956", thumbnail: "https://i.vimeocdn.com/video/2225595797-9b7e1ba9375379ffea325d8e18c074adb9ddd5764d5efeefe2e8d7fa1abbac26-d_640?region=us", aspectRatio: "720 / 1280" },
+      { id: "wedding-4", title: "PROJECT 04", vimeoId: "1246238846", thumbnail: "https://i.vimeocdn.com/video/2225596242-a8219f37ac47e4dcda5d367bd8371d72801fcffe5bf9f8ea1afc29bf03fb90e4-d_640?region=us", aspectRatio: "720 / 1280" },
+      { id: "wedding-5", title: "PROJECT 05", vimeoId: "1246238848", thumbnail: "https://i.vimeocdn.com/video/2225596801-670c1c205c06a8211c0d8db05ba9e7317d162eb3692f8b0a2f3a6dd331e814ef-d_640?region=us", aspectRatio: "720 / 1280" },
+    ],
   },
   {
     slug: "real-estate",
