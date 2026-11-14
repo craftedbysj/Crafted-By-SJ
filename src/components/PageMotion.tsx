@@ -14,7 +14,7 @@ export default function PageMotion() {
     ).matches;
 
     const revealTargets = document.querySelectorAll(
-      ".hero-intro, .hero-footer, .section-heading, .section-topline, .resource-item, .work-empty, .about-meta, .contact-links, .site-footer, .detail-page > *"
+      ".hero-intro, .hero-footer, .section-heading, .section-topline, .resource-item, .work-empty, .about-meta, .site-footer, .detail-page > *"
     );
 
     if (reducedMotion) {

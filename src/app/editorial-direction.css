@@ -866,3 +866,16 @@ body.editorial-motion-ready .contact-section.is-in-view h2.editorial-heading .ed
     mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, .42) 2.5%, #000 7.5%, #000 100%) !important;
   }
 }
+
+/* Keep Contact social links above decorative layers and clickable. */
+.home .contact-section .contact-links {
+  position: relative;
+  z-index: 20;
+  pointer-events: auto;
+}
+.home .contact-section .contact-links a {
+  position: relative;
+  z-index: 21;
+  pointer-events: auto;
+  cursor: pointer;
+}
